@@ -1,6 +1,6 @@
-# React + Vite
+# all-in-one
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A minimal, space-themed workspace combining tasks, focus timers, documents, and soundscapes.
 
 Currently, two official plugins are available:
 
