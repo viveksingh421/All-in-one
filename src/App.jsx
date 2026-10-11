@@ -271,20 +271,6 @@ export default function App() {
 
       {/* Main Celestial Space Viewport */}
       <main className={`relative max-w-7xl mx-auto px-4 sm:px-6 pt-6 transition-all ${zoomedObject ? 'z-40' : 'z-10'}`}>
-        {/* Orbital Spheres / Realms Station */}
-        <div
-          className={`transition-all duration-500 mb-8 ${
-            zoomedObject && zoomedObject !== 'spheres' ? 'opacity-20 blur-sm pointer-events-none' : 'opacity-100'
-          }`}
-        >
-          <OrbitSpheres
-            categories={INITIAL_CATEGORIES}
-            activeCategory={activeCategory}
-            onSelectCategory={setActiveCategory}
-            taskCounts={taskCounts}
-          />
-        </div>
-
         {/* Deep Space Orbit Navigation Info */}
         <div className="flex items-center justify-between text-xs font-mono text-starlight-300/50 px-2 pb-6">
           <span className="flex items-center gap-2">
@@ -448,7 +434,7 @@ export default function App() {
           >
             <div
               onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto custom-scrollbar p-2"
+              className={`relative w-full ${zoomedObject === 'tasks' ? 'max-w-4xl' : 'max-w-3xl'} max-h-[92vh] overflow-y-auto custom-scrollbar p-2`}
             >
               {/* Floating Return Button */}
               <div className="flex items-center justify-between pb-3 mb-3 border-b border-white/10">
@@ -485,10 +471,20 @@ export default function App() {
                             Primary Mission Citadel
                           </h2>
                           <p className="text-[10px] text-starlight-300/60 font-mono">
-                            Zero-Gravity Task Orchestrator
+                            Orbital Realms & Task Orchestrator
                           </p>
                         </div>
                       </div>
+                    </div>
+
+                    {/* Orbital Spheres & Project Realms Embedded Inside To-Do World */}
+                    <div className="mb-4">
+                      <OrbitSpheres
+                        categories={INITIAL_CATEGORIES}
+                        activeCategory={activeCategory}
+                        onSelectCategory={setActiveCategory}
+                        taskCounts={taskCounts}
+                      />
                     </div>
 
                     <CommandBar
