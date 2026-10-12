@@ -140,9 +140,9 @@ export const TaskCard = ({
 
         {/* Task Title & Content */}
         <div className="flex-1 min-w-0">
-          <div className="flex items-start justify-between gap-2">
+          <div className="flex items-start justify-between gap-3">
             <h3
-              className={`text-sm md:text-base font-medium transition-all ${
+              className={`text-lg md:text-xl font-bold tracking-wide transition-all leading-snug ${
                 task.completed
                   ? 'line-through text-starlight-300/50'
                   : 'text-white group-hover:text-cyan-100'
@@ -187,19 +187,19 @@ export const TaskCard = ({
           </div>
 
           {/* Badges / Metadata row */}
-          <div className="flex flex-wrap items-center gap-2 mt-2">
+          <div className="flex flex-wrap items-center gap-2 mt-2.5">
             {/* Priority Glow Badge */}
             <span
-              className={`inline-flex items-center gap-1.5 text-[10px] font-mono uppercase px-2.5 py-0.5 rounded-full border ${priorityGlow.badge}`}
+              className={`inline-flex items-center gap-1.5 text-xs font-mono uppercase px-3 py-1 rounded-full border font-bold ${priorityGlow.badge}`}
             >
-              <span className={`w-1.5 h-1.5 rounded-full ${priorityGlow.glowDot}`} />
+              <span className={`w-2 h-2 rounded-full ${priorityGlow.glowDot}`} />
               {task.priority || 'nebula'}
             </span>
 
             {/* Due Date */}
             {task.dueDate && (
-              <span className="inline-flex items-center gap-1 text-[11px] font-mono text-starlight-300/70 bg-white/5 border border-white/5 px-2 py-0.5 rounded-full">
-                <Clock className="w-3 h-3 text-cyan-400" />
+              <span className="inline-flex items-center gap-1.5 text-xs font-mono text-starlight-200 bg-white/5 border border-white/10 px-3 py-1 rounded-full font-semibold">
+                <Clock className="w-3.5 h-3.5 text-cyan-400" />
                 {task.dueDate}
               </span>
             )}
@@ -209,7 +209,7 @@ export const TaskCard = ({
               task.tags.map((tag, i) => (
                 <span
                   key={i}
-                  className="inline-flex items-center gap-1 text-[10px] font-mono text-purple-300/80 bg-purple-500/10 border border-purple-500/20 px-2 py-0.5 rounded-full"
+                  className="inline-flex items-center gap-1 text-xs font-mono text-purple-200 bg-purple-500/15 border border-purple-500/30 px-2.5 py-1 rounded-full font-semibold"
                 >
                   #{tag}
                 </span>
@@ -217,7 +217,7 @@ export const TaskCard = ({
 
             {/* Subtask count overview */}
             {task.subtasks && task.subtasks.length > 0 && (
-              <span className="text-[10px] font-mono text-starlight-300/50 ml-auto">
+              <span className="text-xs font-mono text-starlight-300 font-semibold ml-auto">
                 {task.subtasks.filter((s) => s.completed).length}/{task.subtasks.length} steps
               </span>
             )}
@@ -229,30 +229,30 @@ export const TaskCard = ({
       {isExpanded && (
         <div className="mt-4 pt-4 border-t border-white/10 space-y-4 animate-in fade-in duration-300">
           {/* Subtasks Section */}
-          <div className="space-y-2">
-            <p className="text-[11px] uppercase tracking-wider font-mono text-cyan-300/70 flex items-center gap-1.5">
-              <Sparkles className="w-3 h-3" /> Sub-Missions & Micro-Steps
+          <div className="space-y-2.5">
+            <p className="text-xs uppercase tracking-wider font-mono text-cyan-300 font-bold flex items-center gap-1.5">
+              <Sparkles className="w-4 h-4" /> Sub-Missions & Micro-Steps
             </p>
 
-            <div className="space-y-1.5 pl-1">
+            <div className="space-y-2 pl-1">
               {(task.subtasks || []).map((sub) => (
                 <div
                   key={sub.id}
                   onClick={() => toggleSubtask(sub.id)}
-                  className="flex items-center gap-2.5 p-1.5 rounded-lg hover:bg-white/5 cursor-pointer text-xs transition-colors"
+                  className="flex items-center gap-3 p-2 rounded-xl hover:bg-white/5 cursor-pointer text-sm transition-colors"
                 >
                   <div
-                    className={`w-4 h-4 rounded border flex items-center justify-center transition-all ${
+                    className={`w-5 h-5 rounded border flex items-center justify-center transition-all ${
                       sub.completed
                         ? 'bg-cyan-500/30 border-cyan-400 text-cyan-300'
-                        : 'border-white/20'
+                        : 'border-white/30'
                     }`}
                   >
-                    {sub.completed && <Check className="w-3 h-3 stroke-[3]" />}
+                    {sub.completed && <Check className="w-3.5 h-3.5 stroke-[3]" />}
                   </div>
                   <span
                     className={`${
-                      sub.completed ? 'line-through text-starlight-300/40' : 'text-starlight-100'
+                      sub.completed ? 'line-through text-starlight-300/40' : 'text-starlight-100 font-medium'
                     }`}
                   >
                     {sub.text}
@@ -262,36 +262,36 @@ export const TaskCard = ({
             </div>
 
             {/* Add Subtask Input */}
-            <form onSubmit={handleAddSubtask} className="flex gap-2 pt-1">
+            <form onSubmit={handleAddSubtask} className="flex gap-2.5 pt-1.5">
               <input
                 type="text"
                 value={subtaskInput}
                 onChange={(e) => setSubtaskInput(e.target.value)}
                 placeholder="Add next orbital step..."
-                className="flex-1 bg-space-950/60 border border-white/10 rounded-xl px-3 py-1.5 text-xs text-white placeholder-starlight-300/40 focus:outline-none focus:border-cyan-400/50"
+                className="flex-1 bg-space-950/70 border border-white/15 rounded-xl px-3.5 py-2 text-sm text-white placeholder-starlight-300/40 focus:outline-none focus:border-cyan-400/60"
               />
               <button
                 type="submit"
                 disabled={!subtaskInput.trim()}
-                className="px-3 py-1.5 rounded-xl text-xs bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 hover:bg-cyan-500/30 disabled:opacity-40"
+                className="px-4 py-2 rounded-xl text-sm font-semibold bg-cyan-500/20 text-cyan-200 border border-cyan-500/40 hover:bg-cyan-500/30 disabled:opacity-40"
               >
-                <Plus className="w-3.5 h-3.5" />
+                <Plus className="w-4 h-4" />
               </button>
             </form>
           </div>
 
           {/* Notes Section */}
-          <div className="space-y-1.5">
-            <p className="text-[11px] uppercase tracking-wider font-mono text-purple-300/70 flex items-center gap-1.5">
-              <FileText className="w-3 h-3" /> Mission Logs & Notes
+          <div className="space-y-2">
+            <p className="text-xs uppercase tracking-wider font-mono text-purple-300 font-bold flex items-center gap-1.5">
+              <FileText className="w-4 h-4" /> Mission Logs & Notes
             </p>
             <textarea
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
               onBlur={handleSaveNotes}
-              rows={2}
+              rows={3}
               placeholder="Record deep space reflections, coordinates, or mission logs here..."
-              className="w-full bg-space-950/60 border border-white/10 rounded-xl p-2.5 text-xs text-starlight-100 placeholder-starlight-300/40 focus:outline-none focus:border-purple-400/50 resize-y"
+              className="w-full bg-space-950/70 border border-white/15 rounded-xl p-3 text-sm text-starlight-100 placeholder-starlight-300/40 focus:outline-none focus:border-purple-400/60 resize-y"
             />
           </div>
         </div>

@@ -10,15 +10,15 @@ export const OrbitSpheres = ({
   return (
     <div className="relative w-full max-w-5xl mx-auto mb-8 px-4">
       {/* Category orbital dock / planet hub */}
-      <div className="flex items-center justify-between flex-wrap gap-3 pb-2">
-        <div className="flex items-center gap-2">
+      <div className="flex items-center justify-between flex-wrap gap-3 pb-3">
+        <div className="flex items-center gap-2.5">
           <Orbit className="w-5 h-5 text-nebula-cyan animate-orbit-spin-slow" />
-          <h2 className="text-xs uppercase tracking-widest font-mono text-starlight-300 font-semibold">
+          <h2 className="text-sm uppercase tracking-widest font-mono text-starlight-200 font-bold">
             Orbital Spheres & Project Realms
           </h2>
         </div>
-        <span className="text-[11px] font-mono text-starlight-300/60">
-          Gravity Anchor: <span className="text-nebula-cyan capitalize">{activeCategory}</span>
+        <span className="text-xs font-mono text-starlight-300/80 font-medium">
+          Gravity Anchor: <span className="text-nebula-cyan font-semibold capitalize">{activeCategory}</span>
         </span>
       </div>
 
@@ -73,10 +73,10 @@ export const OrbitSpheres = ({
               </div>
 
               <div className="space-y-0.5">
-                <p className={`text-xs font-semibold tracking-wide truncate ${isActive ? 'text-white' : 'text-starlight-200'}`}>
+                <p className={`text-sm font-bold tracking-wide truncate ${isActive ? 'text-white' : 'text-starlight-100'}`}>
                   {cat.label}
                 </p>
-                <p className="text-[10px] text-starlight-300/50 font-mono truncate">
+                <p className="text-xs text-starlight-300/70 font-mono truncate">
                   {cat.sub}
                 </p>
               </div>

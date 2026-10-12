@@ -243,19 +243,27 @@
   }
 }
 
-/* Fullscreen Centered Celestial Orbit Overlay without expanding inner element sizes */
+/* Fullscreen Centered Celestial Orbit Overlay covering the entire screen like a true web app */
 .celestial-zoomed-fullscreen {
   position: fixed;
   inset: 0;
+  width: 100vw;
+  height: 100vh;
   z-index: 50;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1.5rem;
-  background: rgba(3, 6, 20, 0.82);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  animation: celestialZoomIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  flex-direction: column;
+  background: rgba(3, 6, 20, 0.97);
+  backdrop-filter: blur(32px);
+  -webkit-backdrop-filter: blur(32px);
+  padding: 0.75rem;
+  overflow-y: auto;
+  animation: celestialZoomIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@media (min-width: 640px) {
+  .celestial-zoomed-fullscreen {
+    padding: 1.25rem;
+  }
 }
 
 @keyframes celestialZoomIn {
