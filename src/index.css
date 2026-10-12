@@ -7,6 +7,18 @@
     --cosmic-glow: rgba(56, 189, 248, 0.15);
   }
 
+  html {
+    font-size: 21px;
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+  }
+
+  @media (min-width: 1024px) {
+    html {
+      font-size: 22.5px;
+    }
+  }
+
   body {
     background-color: #050711;
     background-image: 
