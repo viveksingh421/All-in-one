@@ -44,28 +44,28 @@ export const SoundPlayer = () => {
     <div className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-medium transition-all duration-300 border ${
+        className={`flex items-center gap-2.5 px-4 py-2.5 rounded-2xl text-sm sm:text-base font-mono font-bold transition-all duration-300 border cursor-pointer active:scale-95 shadow-md ${
           activeSound
-            ? 'bg-nebula-cyan/20 border-nebula-cyan/50 text-nebula-cyan shadow-[0_0_15px_rgba(56,189,248,0.3)] animate-pulse'
-            : 'bg-space-900/60 border-white/10 text-starlight-300 hover:text-white hover:border-white/20'
+            ? 'bg-nebula-cyan/25 border-nebula-cyan text-nebula-cyan shadow-[0_0_20px_rgba(56,189,248,0.4)] animate-pulse'
+            : 'bg-space-900/80 border-white/15 text-starlight-100 hover:text-white hover:border-white/30'
         }`}
         title="Ambient Cosmic Soundscapes"
       >
-        {activeSound ? <Volume2 className="w-4 h-4 text-nebula-cyan" /> : <VolumeX className="w-4 h-4" />}
+        {activeSound ? <Volume2 className="w-5 h-5 text-nebula-cyan" /> : <VolumeX className="w-5 h-5" />}
         <span className="hidden sm:inline">
           {activeSound ? `Sound: ${activeSound}` : 'Soundscapes'}
         </span>
         {activeSound && (
-          <span className="w-2 h-2 rounded-full bg-nebula-cyan animate-ping" />
+          <span className="w-2.5 h-2.5 rounded-full bg-nebula-cyan animate-ping" />
         )}
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-3 w-72 p-3.5 rounded-2xl glass-panel border border-white/15 z-50 shadow-2xl animate-in fade-in zoom-in-95 duration-200">
-          <div className="flex items-center justify-between pb-2 mb-2 border-b border-white/10">
-            <div className="flex items-center gap-2">
-              <Radio className="w-4 h-4 text-nebula-cyan" />
-              <span className="text-xs font-semibold text-white tracking-wide">
+        <div className="absolute right-0 mt-3 w-80 sm:w-96 p-4 rounded-3xl glass-panel border border-white/20 z-50 shadow-[0_20px_60px_rgba(0,0,0,0.8)] animate-in fade-in zoom-in-95 duration-200">
+          <div className="flex items-center justify-between pb-3 mb-3 border-b border-white/15">
+            <div className="flex items-center gap-2.5">
+              <Radio className="w-5 h-5 text-nebula-cyan" />
+              <span className="text-base font-bold text-white tracking-wide font-sans">
                 Cosmic Soundscapes
               </span>
             </div>
@@ -75,14 +75,14 @@ export const SoundPlayer = () => {
                   soundManager.stop();
                   setActiveSound(null);
                 }}
-                className="text-[10px] text-red-300 hover:text-red-200 uppercase tracking-wider"
+                className="text-xs text-rose-300 hover:text-rose-200 uppercase tracking-wider font-mono font-bold px-2 py-1 rounded-lg bg-rose-500/20 border border-rose-500/30 cursor-pointer"
               >
                 Mute All
               </button>
             )}
           </div>
 
-          <div className="space-y-2">
+          <div className="space-y-2.5">
             {tracks.map((track) => {
               const Icon = track.icon;
               const isSelected = activeSound === track.id;
@@ -90,37 +90,37 @@ export const SoundPlayer = () => {
                 <button
                   key={track.id}
                   onClick={() => toggleSound(track.id)}
-                  className={`w-full flex items-center gap-3 p-2.5 rounded-xl text-left transition-all border ${
+                  className={`w-full flex items-center gap-3.5 p-3 rounded-2xl text-left transition-all border cursor-pointer ${
                     isSelected
-                      ? 'bg-white/10 border-nebula-cyan/60 shadow-[0_0_12px_rgba(56,189,248,0.25)]'
-                      : 'bg-space-850/40 border-white/5 hover:border-white/15 hover:bg-space-850/70'
+                      ? 'bg-cyan-500/20 border-nebula-cyan/70 shadow-[0_0_18px_rgba(56,189,248,0.3)]'
+                      : 'bg-space-850/60 border-white/10 hover:border-white/25 hover:bg-space-850'
                   }`}
                 >
                   <div
-                    className={`w-8 h-8 rounded-lg flex items-center justify-center bg-gradient-to-br ${track.color} text-white shadow-inner`}
+                    className={`w-10 h-10 rounded-xl flex items-center justify-center bg-gradient-to-br ${track.color} text-white shadow-inner shrink-0`}
                   >
-                    <Icon className="w-4 h-4" />
+                    <Icon className="w-5 h-5" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-xs font-semibold text-white truncate">
+                    <p className="text-sm sm:text-base font-bold text-white truncate">
                       {track.label}
                     </p>
-                    <p className="text-[10px] text-starlight-300/70 truncate">
+                    <p className="text-xs sm:text-sm text-starlight-200 truncate mt-0.5 font-sans">
                       {track.desc}
                     </p>
                   </div>
                   {isSelected && (
-                    <div className="flex items-center gap-0.5">
-                      <span className="w-1 h-3 bg-nebula-cyan rounded-full animate-bounce" />
-                      <span className="w-1 h-4 bg-nebula-cyan rounded-full animate-bounce [animation-delay:0.15s]" />
-                      <span className="w-1 h-2 bg-nebula-cyan rounded-full animate-bounce [animation-delay:0.3s]" />
+                    <div className="flex items-center gap-1 shrink-0">
+                      <span className="w-1.5 h-4 bg-nebula-cyan rounded-full animate-bounce" />
+                      <span className="w-1.5 h-5 bg-nebula-cyan rounded-full animate-bounce [animation-delay:0.15s]" />
+                      <span className="w-1.5 h-3 bg-nebula-cyan rounded-full animate-bounce [animation-delay:0.3s]" />
                     </div>
                   )}
                 </button>
               );
             })}
           </div>
-          <p className="text-[10px] text-starlight-300/50 text-center mt-3">
+          <p className="text-xs text-starlight-300 font-mono text-center mt-3.5">
             Procedurally synthesized with Web Audio API.
           </p>
         </div>

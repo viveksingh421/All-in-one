@@ -88,80 +88,96 @@
   animation: floatGentle 12s ease-in-out infinite 2s;
 }
 
-/* Roaming Celestial Planetary Orbits (Drifting smoothly across space) */
-.celestial-roam-top-center {
-  animation: roamTopCenter 18s ease-in-out infinite alternate;
+/* Roaming Celestial Planetary Orbits (Drifting across space with distinct non-colliding orbital paths) */
+.celestial-roam-top-left {
+  animation: roamTopLeft 24s ease-in-out infinite alternate;
+}
+
+.celestial-roam-top-right {
+  animation: roamTopRight 26s ease-in-out infinite alternate;
+}
+
+.celestial-roam-bottom-left {
+  animation: roamBottomLeft 28s ease-in-out infinite alternate;
 }
 
 .celestial-roam-bottom-right {
-  animation: roamBottomRight 22s ease-in-out infinite alternate;
+  animation: roamBottomRight 30s ease-in-out infinite alternate;
 }
 
-.celestial-roam-mid-left {
-  animation: roamMidLeft 20s ease-in-out infinite alternate;
-}
-
-.celestial-roam-mid-right {
-  animation: roamMidRight 24s ease-in-out infinite alternate;
-}
-
-@keyframes roamTopCenter {
+/* Planet 1 (Top-Left): Roams through upper-left quadrant towards center-top without reaching center */
+@keyframes roamTopLeft {
   0% {
     transform: translate(0px, 0px) scale(1);
   }
-  33% {
-    transform: translate(-30px, 18px) scale(1.02);
+  25% {
+    transform: translate(50px, 20px) scale(1.02);
   }
-  66% {
-    transform: translate(25px, 32px) scale(0.98);
+  50% {
+    transform: translate(80px, -10px) scale(0.98);
+  }
+  75% {
+    transform: translate(30px, 40px) scale(1.01);
   }
   100% {
-    transform: translate(10px, 8px) scale(1.01);
+    transform: translate(-15px, 15px) scale(1);
   }
 }
 
+/* Planet 2 (Top-Right): Roams through upper-right quadrant towards center-right */
+@keyframes roamTopRight {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  25% {
+    transform: translate(-45px, 30px) scale(0.98);
+  }
+  50% {
+    transform: translate(-80px, -10px) scale(1.02);
+  }
+  75% {
+    transform: translate(-30px, 45px) scale(0.99);
+  }
+  100% {
+    transform: translate(15px, 15px) scale(1);
+  }
+}
+
+/* Planet 3 (Bottom-Left): Roams through lower-left quadrant towards center-left */
+@keyframes roamBottomLeft {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  25% {
+    transform: translate(45px, -30px) scale(1.01);
+  }
+  50% {
+    transform: translate(80px, 10px) scale(0.98);
+  }
+  75% {
+    transform: translate(30px, -45px) scale(1.02);
+  }
+  100% {
+    transform: translate(-15px, -15px) scale(1);
+  }
+}
+
+/* Planet 4 (Bottom-Right): Roams through lower-right quadrant towards center-bottom */
 @keyframes roamBottomRight {
   0% {
     transform: translate(0px, 0px) scale(1);
   }
-  30% {
-    transform: translate(-35px, -24px) scale(1.02);
+  25% {
+    transform: translate(-50px, -20px) scale(0.99);
   }
-  70% {
-    transform: translate(20px, -40px) scale(0.97);
-  }
-  100% {
-    transform: translate(-15px, -12px) scale(1);
-  }
-}
-
-@keyframes roamMidLeft {
-  0% {
-    transform: translate(0px, 0px);
-  }
-  40% {
-    transform: translate(28px, -25px) scale(1.03);
-  }
-  80% {
-    transform: translate(15px, 30px) scale(0.97);
-  }
-  100% {
-    transform: translate(-8px, 12px);
-  }
-}
-
-@keyframes roamMidRight {
-  0% {
-    transform: translate(0px, 0px);
-  }
-  35% {
-    transform: translate(-32px, 20px) scale(0.98);
+  50% {
+    transform: translate(-80px, 10px) scale(1.02);
   }
   75% {
-    transform: translate(-18px, -30px) scale(1.03);
+    transform: translate(-30px, -40px) scale(0.98);
   }
   100% {
-    transform: translate(12px, -10px);
+    transform: translate(15px, -15px) scale(1);
   }
 }
 

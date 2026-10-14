@@ -64,30 +64,30 @@ export const DeepSpaceFocusModal = ({ task, onClose, onToggleComplete, onUpdateT
 
         {/* Modal Top Bar */}
         <div className="flex items-center justify-between pb-6 border-b border-white/10">
-          <div className="flex items-center gap-2">
-            <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping" />
-            <h2 className="text-xs uppercase font-mono tracking-widest text-cyan-300 font-semibold flex items-center gap-2">
+          <div className="flex items-center gap-2.5">
+            <span className="w-3 h-3 rounded-full bg-cyan-400 animate-ping" />
+            <h2 className="text-sm uppercase font-mono tracking-widest text-cyan-300 font-bold flex items-center gap-2">
               Deep Space Focus Chamber
             </h2>
           </div>
           <button
             onClick={onClose}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 text-starlight-300 hover:text-white text-xs border border-white/10 transition-all"
+            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-starlight-100 hover:text-white text-xs sm:text-sm font-mono border border-white/15 transition-all font-semibold active:scale-95 cursor-pointer"
           >
-            <Minimize2 className="w-3.5 h-3.5" />
+            <Minimize2 className="w-4 h-4" />
             <span>Return to Orbit</span>
           </button>
         </div>
 
         {/* Focal Task Content */}
         <div className="my-8 text-center space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono uppercase bg-cyan-500/10 border border-cyan-400/30 text-cyan-300">
-            <Sparkles className="w-3.5 h-3.5" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono uppercase bg-cyan-500/15 border border-cyan-400/40 text-cyan-200 font-bold">
+            <Sparkles className="w-4 h-4" />
             Current Celestial Mission
           </div>
 
           <h1
-            className={`font-serif text-2xl md:text-4xl text-white font-medium leading-relaxed tracking-wide ${
+            className={`font-serif text-3xl md:text-5xl text-white font-bold leading-relaxed tracking-wide ${
               task.completed ? 'line-through text-starlight-300/40' : ''
             }`}
           >
@@ -95,11 +95,11 @@ export const DeepSpaceFocusModal = ({ task, onClose, onToggleComplete, onUpdateT
           </h1>
 
           {task.tags && task.tags.length > 0 && (
-            <div className="flex items-center justify-center gap-2 pt-1">
+            <div className="flex items-center justify-center gap-2.5 pt-1 flex-wrap">
               {task.tags.map((t, idx) => (
                 <span
                   key={idx}
-                  className="text-xs font-mono text-purple-300 bg-purple-500/10 border border-purple-500/20 px-2.5 py-0.5 rounded-full"
+                  className="text-xs sm:text-sm font-mono text-purple-200 bg-purple-500/15 border border-purple-500/30 px-3 py-1 rounded-full font-semibold"
                 >
                   #{t}
                 </span>
@@ -110,17 +110,17 @@ export const DeepSpaceFocusModal = ({ task, onClose, onToggleComplete, onUpdateT
           {/* Chrono Timer for deep focus sessions */}
           <div className="pt-6 pb-2">
             {/* Session Duration Selector */}
-            <div className="flex items-center justify-center gap-1.5 mb-3 flex-wrap">
+            <div className="flex items-center justify-center gap-2 mb-4 flex-wrap">
               {DURATION_PRESETS.map((p) => {
                 const isSelected = selectedDuration === p.mins;
                 return (
                   <button
                     key={p.mins}
                     onClick={() => handleSelectPreset(p.mins)}
-                    className={`px-3 py-1 rounded-xl text-xs font-mono transition-all border ${
+                    className={`px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-mono font-bold transition-all border cursor-pointer ${
                       isSelected
-                        ? 'bg-cyan-500/25 border-cyan-400/60 text-cyan-200 shadow-[0_0_12px_rgba(56,189,248,0.3)]'
-                        : 'bg-white/5 border-white/10 text-starlight-300/60 hover:text-white hover:border-white/20'
+                        ? 'bg-cyan-500/30 border-cyan-400 text-cyan-100 shadow-[0_0_15px_rgba(56,189,248,0.4)]'
+                        : 'bg-white/5 border-white/10 text-starlight-200 hover:text-white hover:border-white/25 hover:bg-white/10'
                     }`}
                     title={p.desc}
                   >
@@ -130,16 +130,16 @@ export const DeepSpaceFocusModal = ({ task, onClose, onToggleComplete, onUpdateT
               })}
             </div>
 
-            <div className="font-mono text-5xl md:text-6xl font-light text-cyan-100 tracking-wider">
+            <div className="font-mono text-6xl md:text-7xl font-light text-cyan-100 tracking-wider">
               {formatTime(seconds)}
             </div>
-            <div className="flex items-center justify-center gap-3 mt-4">
+            <div className="flex items-center justify-center gap-4 mt-5">
               <button
                 onClick={() => setTimerRunning(!timerRunning)}
-                className={`px-5 py-2 rounded-xl text-xs font-medium font-mono border transition-all ${
+                className={`px-6 py-2.5 rounded-xl text-sm font-bold font-mono border transition-all cursor-pointer active:scale-95 ${
                   timerRunning
-                    ? 'bg-rose-500/20 border-rose-500/40 text-rose-300'
-                    : 'bg-cyan-500/20 border-cyan-400/40 text-cyan-200 hover:bg-cyan-500/30 shadow-[0_0_15px_rgba(56,189,248,0.2)]'
+                    ? 'bg-rose-500/25 border-rose-500/50 text-rose-200 hover:bg-rose-500/35'
+                    : 'bg-cyan-500/25 border-cyan-400/50 text-cyan-100 hover:bg-cyan-500/35 shadow-[0_0_20px_rgba(56,189,248,0.3)]'
                 }`}
               >
                 {timerRunning ? 'Pause Chrono' : 'Initiate Warp Chrono'}
@@ -149,7 +149,7 @@ export const DeepSpaceFocusModal = ({ task, onClose, onToggleComplete, onUpdateT
                   setTimerRunning(false);
                   setSeconds(selectedDuration * 60);
                 }}
-                className="px-3 py-2 rounded-xl text-xs font-mono text-starlight-300/60 hover:text-white bg-white/5 border border-white/10"
+                className="px-4 py-2.5 rounded-xl text-sm font-mono text-starlight-200 hover:text-white bg-white/5 border border-white/15 hover:bg-white/10 cursor-pointer font-semibold"
               >
                 Reset
               </button>
@@ -158,20 +158,20 @@ export const DeepSpaceFocusModal = ({ task, onClose, onToggleComplete, onUpdateT
         </div>
 
         {/* Bottom Actions */}
-        <div className="pt-6 border-t border-white/10 flex items-center justify-between">
-          <p className="text-xs text-starlight-300/60 font-mono">
+        <div className="pt-6 border-t border-white/10 flex items-center justify-between flex-wrap gap-3">
+          <p className="text-xs sm:text-sm text-starlight-300 font-mono">
             Zero gravity mode • Distractions suppressed
           </p>
 
           <button
             onClick={handleCompleteInFocus}
-            className={`flex items-center gap-2 px-5 py-2.5 rounded-2xl text-xs font-semibold transition-all ${
+            className={`flex items-center gap-2.5 px-6 py-3 rounded-2xl text-sm font-bold transition-all cursor-pointer active:scale-95 ${
               task.completed
                 ? 'bg-space-900 border border-white/20 text-starlight-300'
                 : 'bg-gradient-to-r from-cyan-400 to-purple-600 hover:from-cyan-300 hover:to-purple-500 text-white shadow-[0_0_25px_rgba(56,189,248,0.4)]'
             }`}
           >
-            <Check className="w-4 h-4 stroke-[2.5]" />
+            <Check className="w-5 h-5 stroke-[2.5]" />
             <span>{task.completed ? 'Mission Accomplished' : 'Complete Mission & Disintegrate'}</span>
           </button>
         </div>

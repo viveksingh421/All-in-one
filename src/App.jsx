@@ -214,7 +214,7 @@ export default function App() {
 
   return (
     <div
-      className="relative min-h-screen text-starlight-100 selection:bg-cyan-500/30 selection:text-white pb-24 font-sans transition-all duration-700"
+      className="relative h-screen w-screen overflow-hidden text-starlight-100 selection:bg-cyan-500/30 selection:text-white font-sans transition-all duration-700 flex flex-col"
       style={{
         backgroundImage: currentModeMeta.ambientGradient,
       }}
@@ -224,38 +224,39 @@ export default function App() {
 
       {/* Floating Header */}
       <header
-        className={`sticky top-0 z-40 w-full backdrop-blur-xl bg-space-950/70 border-b border-white/10 transition-all duration-500 py-2 ${zoomedObject ? 'opacity-20 blur-xs pointer-events-none' : 'opacity-100'
-          }`}
+        className={`shrink-0 z-40 w-full backdrop-blur-xl bg-space-950/70 border-b border-white/10 transition-all duration-500 py-1.5 ${
+          zoomedObject ? 'opacity-20 blur-xs pointer-events-none' : 'opacity-100'
+        }`}
       >
-        <div className="w-full px-4 sm:px-8 xl:px-12 h-20 flex items-center justify-between">
+        <div className="w-full px-4 sm:px-8 xl:px-12 h-16 sm:h-20 flex items-center justify-between">
           {/* Logo & Brand Identity */}
           <div className="flex items-center gap-3.5">
-            <div className="relative w-12 h-12 rounded-2xl bg-gradient-to-tr from-cyan-500 via-indigo-600 to-purple-500 p-[2px] shadow-[0_0_30px_rgba(56,189,248,0.5)]">
+            <div className="relative w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-tr from-cyan-500 via-indigo-600 to-purple-500 p-[2px] shadow-[0_0_30px_rgba(56,189,248,0.5)]">
               <div className="w-full h-full bg-space-950 rounded-[14px] flex items-center justify-center">
-                <Globe2 className="w-7 h-7 text-cyan-400 animate-orbit-spin-slow" />
+                <Globe2 className="w-6 h-6 sm:w-7 sm:h-7 text-cyan-400 animate-orbit-spin-slow" />
               </div>
             </div>
             <div>
               <div className="flex items-center gap-3">
-                <h1 className="font-serif text-3xl sm:text-4xl font-black tracking-tight text-white drop-shadow-md">
+                <h1 className="font-serif text-2xl sm:text-4xl font-black tracking-tight text-white drop-shadow-md">
                   Float
                 </h1>
-                <span className="text-sm font-mono px-3 py-1 rounded-full bg-cyan-500/20 border border-cyan-400/40 text-cyan-300 font-bold">
+                <span className="text-xs sm:text-sm font-mono px-3 py-0.5 sm:py-1 rounded-full bg-cyan-500/20 border border-cyan-400/40 text-cyan-300 font-bold">
                   Spatial Study Hub v3.0
                 </span>
               </div>
-              <p className="text-sm font-mono text-starlight-200 hidden sm:block mt-0.5 font-medium">
+              <p className="text-xs sm:text-sm font-mono text-starlight-200 hidden sm:block mt-0.5 font-medium">
                 Zero-Gravity Focus Workspace • Mode: <span className="text-cyan-300 font-bold">{currentModeMeta.label}</span>
               </p>
             </div>
           </div>
 
           {/* Right cluster */}
-          <div className="flex items-center gap-5">
-            <div className="hidden md:flex items-center gap-3 px-5 py-2.5 rounded-2xl bg-white/5 border border-white/15 text-base font-mono shadow-inner">
+          <div className="flex items-center gap-4 sm:gap-5">
+            <div className="hidden md:flex items-center gap-3 px-4 py-2 rounded-2xl bg-white/5 border border-white/15 text-sm sm:text-base font-mono shadow-inner">
               <span className="text-starlight-200 font-semibold">Orbit Completion:</span>
-              <span className="text-cyan-300 font-extrabold text-lg">{progressPercent}%</span>
-              <div className="w-24 h-2.5 rounded-full bg-space-900 border border-white/15 overflow-hidden">
+              <span className="text-cyan-300 font-extrabold text-base sm:text-lg">{progressPercent}%</span>
+              <div className="w-20 sm:w-24 h-2.5 rounded-full bg-space-900 border border-white/15 overflow-hidden">
                 <div
                   className="h-full bg-gradient-to-r from-cyan-400 to-purple-500 transition-all duration-500"
                   style={{ width: `${progressPercent}%` }}
@@ -269,31 +270,31 @@ export default function App() {
       </header>
 
       {/* Main Celestial Space Viewport */}
-      <main className={`relative w-full px-4 sm:px-8 xl:px-12 pt-4 transition-all ${zoomedObject ? 'z-40' : 'z-10'}`}>
+      <main className={`relative w-full flex-1 min-h-0 px-4 sm:px-8 xl:px-12 py-2 flex flex-col transition-all ${zoomedObject ? 'z-40' : 'z-10'}`}>
         {/* Deep Space Orbit Navigation Info */}
-        <div className="flex items-center justify-between text-base font-mono text-starlight-200 px-3 pb-6 flex-wrap gap-2">
-          <span className="flex items-center gap-3">
-            <span className="w-3.5 h-3.5 rounded-full bg-cyan-400 animate-ping" />
-            <strong className="text-white font-extrabold text-base sm:text-lg">Celestial Deep Space System</strong> • Click any planetary sphere to open its full world • Esc to return
+        <div className="flex items-center justify-between text-sm sm:text-base font-mono text-starlight-200 px-3 pb-2 flex-wrap gap-2 shrink-0">
+          <span className="flex items-center gap-2.5">
+            <span className="w-3 h-3 rounded-full bg-cyan-400 animate-ping" />
+            <strong className="text-white font-extrabold text-sm sm:text-base">Celestial Deep Space System</strong> • Click any planetary sphere to open its full world • Esc to return
           </span>
-          <span className="hidden sm:inline text-starlight-300/80 font-bold text-sm sm:text-base">
+          <span className="hidden sm:inline text-starlight-300/80 font-bold text-xs sm:text-sm">
             Coordinates: Sector-Alpha • Gravity: Zero
           </span>
         </div>
 
-        {/* GENUINE CELESTIAL PLANETARY GALAXY (Deep Space Roaming Map) */}
-        <div className="relative h-[calc(100vh-150px)] min-h-[640px] w-full my-2 overflow-hidden rounded-3xl border border-white/10 bg-space-950/40 backdrop-blur-xs p-6 shadow-inner">
+        {/* GENUINE CELESTIAL PLANETARY GALAXY (Deep Space Roaming Map Fits 1 Screen) */}
+        <div className="relative flex-1 min-h-0 w-full overflow-hidden rounded-3xl border border-white/10 bg-space-950/40 backdrop-blur-xs p-4 sm:p-6 shadow-inner">
           {/* Faint Orbital Elliptical Trajectory Lines connecting the cosmos */}
           <div className="absolute inset-x-8 top-12 bottom-12 rounded-full border border-dashed border-cyan-400/10 pointer-events-none -rotate-6" />
           <div className="absolute inset-x-20 top-24 bottom-24 rounded-full border border-dotted border-purple-400/10 pointer-events-none rotate-12" />
 
-          {/* TOP CENTER ROAMING PLANET: To-Do Citadel Sphere */}
-          <div className="absolute top-2 left-1/2 -translate-x-1/2 celestial-roam-top-center z-10">
+          {/* TOP-LEFT ROAMING PLANET: To-Do Citadel */}
+          <div className="absolute top-4 sm:top-6 left-6 sm:left-14 celestial-roam-top-left z-10">
             <div className="flex flex-col items-center">
               <div
                 id="celestial-todo-planet"
                 onClick={() => setZoomedObject('tasks')}
-                className="celestial-planet-sphere w-64 h-64 sm:w-76 sm:h-76 md:w-84 md:h-84 relative group cursor-pointer transition-transform duration-500 hover:scale-105 active:scale-95"
+                className="celestial-planet-sphere w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 relative group cursor-pointer transition-transform duration-500 hover:scale-105 active:scale-95"
               >
                 {/* Planetary Orbital Dashed Rings */}
                 <div className="celestial-orbit-circular-ring border-cyan-400/40 group-hover:border-cyan-400/75" />
@@ -303,104 +304,101 @@ export default function App() {
                 <div className="celestial-sphere-glow bg-cyan-500/30 group-hover:bg-cyan-400/50" />
 
                 {/* 3D Planet Surface Texture */}
-                <div className="w-full h-full rounded-full bg-gradient-to-br from-cyan-400 via-indigo-800 to-space-950 p-5 shadow-[0_0_90px_rgba(56,189,248,0.55),inset_0_18px_40px_rgba(255,255,255,0.5),inset_0_-22px_50px_rgba(0,0,0,0.92)] border border-cyan-300/40 flex flex-col items-center justify-center text-center relative overflow-hidden">
-                  <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(255,255,255,0.25),transparent_65%)] pointer-events-none" />
-
-                  {/* Planet Icon & Medium Crisp Text */}
-                  <div className="w-12 h-12 rounded-2xl bg-white/15 backdrop-blur-md border border-white/25 flex items-center justify-center text-cyan-200 mb-2 shadow-inner group-hover:rotate-12 transition-transform duration-300">
-                    <Sparkles className="w-6 h-6 animate-pulse" />
+                <div className="w-full h-full rounded-full bg-gradient-to-br from-cyan-400 via-indigo-800 to-space-950 p-4 sm:p-5 shadow-[0_0_80px_rgba(56,189,248,0.5),inset_0_15px_35px_rgba(255,255,255,0.45),inset_0_-18px_45px_rgba(0,0,0,0.9)] border border-cyan-300/40 flex flex-col items-center justify-center text-center relative overflow-hidden">
+                  <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-white/15 backdrop-blur-md border border-white/25 flex items-center justify-center text-cyan-200 mb-1.5 shadow-inner group-hover:rotate-12 transition-transform duration-300">
+                    <Sparkles className="w-5 h-5 sm:w-6 sm:h-6 animate-pulse" />
                   </div>
-                  <h3 className="text-xl sm:text-2xl font-bold tracking-wide text-white drop-shadow-md">
+                  <h3 className="text-base sm:text-xl font-bold tracking-wide text-white drop-shadow-md">
                     To-Do Citadel
                   </h3>
-                  <span className="text-xs sm:text-sm font-mono text-cyan-200 font-semibold mt-1">
+                  <span className="text-[11px] sm:text-xs font-mono text-cyan-200 font-semibold mt-0.5">
                     {tasks.filter((t) => !t.completed).length} Missions Active
                   </span>
-                  <span className="text-xs font-mono uppercase tracking-wider text-cyan-300 mt-2.5 px-3.5 py-1 rounded-full bg-cyan-400/20 border border-cyan-400/40 group-hover:bg-cyan-400/35 transition-all shadow-sm font-semibold">
+                  <span className="text-[10px] sm:text-xs font-mono uppercase tracking-wider text-cyan-300 mt-2 px-3 py-0.5 sm:py-1 rounded-full bg-cyan-400/20 border border-cyan-400/40 group-hover:bg-cyan-400/35 transition-all shadow-sm font-semibold">
                     Enter Citadel
                   </span>
                 </div>
 
                 {/* Orbiting Tiny Satellite */}
-                <div className="absolute -top-3 right-6 w-4 h-4 rounded-full bg-gradient-to-tr from-cyan-300 to-indigo-400 shadow-[0_0_14px_#38bdf8] animate-bounce" />
+                <div className="absolute -top-2 right-4 w-3.5 h-3.5 rounded-full bg-gradient-to-tr from-cyan-300 to-indigo-400 shadow-[0_0_12px_#38bdf8] animate-bounce" />
               </div>
-              <p className="text-xs sm:text-sm font-mono text-cyan-300/90 mt-3 tracking-widest uppercase font-bold drop-shadow">
+              <p className="text-xs sm:text-sm font-mono text-cyan-300/90 mt-2 tracking-widest uppercase font-bold drop-shadow">
                 Sector 01 • To-Do World
               </p>
             </div>
           </div>
 
-          {/* MID-LEFT ROAMING PLANET: Orbital Archive Hub (PDFs) */}
-          <div className="absolute top-[34%] left-4 sm:left-10 celestial-roam-mid-left z-10">
-            <div className="flex flex-col items-center">
-              <div
-                id="celestial-docs-planet"
-                onClick={() => setZoomedObject('docs')}
-                className="celestial-planet-sphere w-56 h-56 sm:w-64 sm:h-64 md:w-72 md:h-72 relative group cursor-pointer transition-transform duration-500 hover:scale-105 active:scale-95"
-              >
-                <div className="celestial-orbit-circular-ring border-purple-400/35 group-hover:border-purple-400/70" />
-                <div className="celestial-sphere-glow bg-purple-600/30 group-hover:bg-purple-500/50" />
-
-                <div className="w-full h-full rounded-full bg-gradient-to-br from-purple-500 via-purple-900 to-space-950 p-5 shadow-[0_0_75px_rgba(168,85,247,0.5),inset_0_15px_30px_rgba(255,255,255,0.4),inset_0_-20px_45px_rgba(0,0,0,0.9)] border border-purple-300/40 flex flex-col items-center justify-center text-center relative overflow-hidden">
-                  <div className="w-11 h-11 rounded-2xl bg-white/15 backdrop-blur-md border border-white/25 flex items-center justify-center text-purple-200 mb-2 shadow-inner">
-                    <BookOpen className="w-5 h-5" />
-                  </div>
-                  <h4 className="text-lg sm:text-xl font-bold text-white tracking-wide drop-shadow-md">
-                    Archive Hub
-                  </h4>
-                  <span className="text-xs sm:text-sm font-mono text-purple-200/90 mt-0.5 font-semibold">
-                    PDFs & Notes
-                  </span>
-                  <span className="text-xs font-mono text-purple-200 mt-2 px-3 py-1 rounded-full bg-purple-400/25 border border-purple-400/40 font-semibold shadow-sm">
-                    Open Archive
-                  </span>
-                </div>
-              </div>
-              <p className="text-xs sm:text-sm font-mono text-purple-300/90 mt-2.5 tracking-wider uppercase font-bold drop-shadow">
-                Sector 02 • Archive World
-              </p>
-            </div>
-          </div>
-
-          {/* MID-RIGHT ROAMING PLANET: Cosmic Vibes Audio Nexus */}
-          <div className="absolute top-[30%] right-4 sm:right-10 celestial-roam-mid-right z-10">
+          {/* TOP-RIGHT ROAMING PLANET: Cosmic Vibes Nexus */}
+          <div className="absolute top-4 sm:top-6 right-6 sm:right-14 celestial-roam-top-right z-10">
             <div className="flex flex-col items-center">
               <div
                 id="celestial-vibe-planet"
                 onClick={() => setZoomedObject('vibe')}
-                className="celestial-planet-sphere w-56 h-56 sm:w-64 sm:h-64 md:w-72 md:h-72 relative group cursor-pointer transition-transform duration-500 hover:scale-105 active:scale-95"
+                className="celestial-planet-sphere w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 relative group cursor-pointer transition-transform duration-500 hover:scale-105 active:scale-95"
               >
                 <div className="celestial-orbit-circular-ring border-pink-400/35 group-hover:border-pink-400/70" />
                 <div className="celestial-sphere-glow bg-pink-600/30 group-hover:bg-pink-500/50" />
 
-                <div className="w-full h-full rounded-full bg-gradient-to-br from-pink-500 via-rose-900 to-space-950 p-5 shadow-[0_0_75px_rgba(244,114,182,0.5),inset_0_15px_30px_rgba(255,255,255,0.4),inset_0_-20px_45px_rgba(0,0,0,0.9)] border border-pink-300/40 flex flex-col items-center justify-center text-center relative overflow-hidden">
-                  <div className="w-11 h-11 rounded-2xl bg-white/15 backdrop-blur-md border border-white/25 flex items-center justify-center text-pink-200 mb-2 shadow-inner">
-                    <Flame className="w-5 h-5" />
+                <div className="w-full h-full rounded-full bg-gradient-to-br from-pink-500 via-rose-900 to-space-950 p-4 sm:p-5 shadow-[0_0_75px_rgba(244,114,182,0.5),inset_0_15px_30px_rgba(255,255,255,0.4),inset_0_-18px_45px_rgba(0,0,0,0.9)] border border-pink-300/40 flex flex-col items-center justify-center text-center relative overflow-hidden">
+                  <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-white/15 backdrop-blur-md border border-white/25 flex items-center justify-center text-pink-200 mb-1.5 shadow-inner">
+                    <Flame className="w-5 h-5 sm:w-6 sm:h-6" />
                   </div>
-                  <h4 className="text-lg sm:text-xl font-bold text-white tracking-wide drop-shadow-md">
+                  <h4 className="text-base sm:text-xl font-bold text-white tracking-wide drop-shadow-md">
                     Vibe Nexus
                   </h4>
-                  <span className="text-xs sm:text-sm font-mono text-pink-200/90 mt-0.5 font-semibold">
+                  <span className="text-[11px] sm:text-xs font-mono text-pink-200/90 mt-0.5 font-semibold">
                     Soundscapes
                   </span>
-                  <span className="text-xs font-mono text-pink-200 mt-2 px-3 py-1 rounded-full bg-pink-400/25 border border-pink-400/40 font-semibold shadow-sm">
+                  <span className="text-[10px] sm:text-xs font-mono text-pink-200 mt-2 px-3 py-0.5 sm:py-1 rounded-full bg-pink-400/25 border border-pink-400/40 font-semibold shadow-sm">
                     Open Nexus
                   </span>
                 </div>
               </div>
-              <p className="text-xs sm:text-sm font-mono text-pink-300/90 mt-2.5 tracking-wider uppercase font-bold drop-shadow">
-                Sector 03 • Soundscape World
+              <p className="text-xs sm:text-sm font-mono text-pink-300/90 mt-2 tracking-wider uppercase font-bold drop-shadow">
+                Sector 02 • Soundscape World
               </p>
             </div>
           </div>
 
-          {/* BOTTOM RIGHT ROAMING PLANET: Stopwatch Chrono Sphere */}
-          <div className="absolute bottom-4 right-6 sm:right-12 celestial-roam-bottom-right z-10">
+          {/* BOTTOM-LEFT ROAMING PLANET: Orbital Archive Hub (PDFs) */}
+          <div className="absolute bottom-6 sm:bottom-10 left-6 sm:left-14 celestial-roam-bottom-left z-10">
+            <div className="flex flex-col items-center">
+              <div
+                id="celestial-docs-planet"
+                onClick={() => setZoomedObject('docs')}
+                className="celestial-planet-sphere w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 relative group cursor-pointer transition-transform duration-500 hover:scale-105 active:scale-95"
+              >
+                <div className="celestial-orbit-circular-ring border-purple-400/35 group-hover:border-purple-400/70" />
+                <div className="celestial-sphere-glow bg-purple-600/30 group-hover:bg-purple-500/50" />
+
+                <div className="w-full h-full rounded-full bg-gradient-to-br from-purple-500 via-purple-900 to-space-950 p-4 sm:p-5 shadow-[0_0_75px_rgba(168,85,247,0.5),inset_0_15px_30px_rgba(255,255,255,0.4),inset_0_-18px_45px_rgba(0,0,0,0.9)] border border-purple-300/40 flex flex-col items-center justify-center text-center relative overflow-hidden">
+                  <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-white/15 backdrop-blur-md border border-white/25 flex items-center justify-center text-purple-200 mb-1.5 shadow-inner">
+                    <BookOpen className="w-5 h-5 sm:w-6 sm:h-6" />
+                  </div>
+                  <h4 className="text-base sm:text-xl font-bold text-white tracking-wide drop-shadow-md">
+                    Archive Hub
+                  </h4>
+                  <span className="text-[11px] sm:text-xs font-mono text-purple-200/90 mt-0.5 font-semibold">
+                    PDFs & Notes
+                  </span>
+                  <span className="text-[10px] sm:text-xs font-mono text-purple-200 mt-2 px-3 py-0.5 sm:py-1 rounded-full bg-purple-400/25 border border-purple-400/40 font-semibold shadow-sm">
+                    Open Archive
+                  </span>
+                </div>
+              </div>
+              <p className="text-xs sm:text-sm font-mono text-purple-300/90 mt-2 tracking-wider uppercase font-bold drop-shadow">
+                Sector 03 • Archive World
+              </p>
+            </div>
+          </div>
+
+          {/* BOTTOM-RIGHT ROAMING PLANET: Stopwatch Chrono Sphere */}
+          <div className="absolute bottom-6 sm:bottom-10 right-6 sm:right-14 celestial-roam-bottom-right z-10">
             <div className="flex flex-col items-center">
               <div
                 id="celestial-stopwatch-planet"
                 onClick={() => setZoomedObject('stopwatch')}
-                className="celestial-planet-sphere w-68 h-68 sm:w-80 sm:h-80 md:w-88 md:h-88 relative group cursor-pointer transition-transform duration-500 hover:scale-105 active:scale-95"
+                className="celestial-planet-sphere w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 relative group cursor-pointer transition-transform duration-500 hover:scale-105 active:scale-95"
               >
                 {/* Orbital Rings */}
                 <div className="celestial-orbit-circular-ring border-cyan-400/40 group-hover:border-cyan-400/80" />
@@ -410,25 +408,25 @@ export default function App() {
                 <div className="celestial-sphere-glow bg-cyan-600/40 group-hover:bg-cyan-500/60" />
 
                 {/* 3D Planet Body */}
-                <div className="w-full h-full rounded-full bg-gradient-to-br from-cyan-400 via-teal-800 to-space-950 p-6 shadow-[0_0_95px_rgba(56,189,248,0.6),inset_0_20px_45px_rgba(255,255,255,0.5),inset_0_-25px_55px_rgba(0,0,0,0.92)] border border-cyan-300/40 flex flex-col items-center justify-center text-center relative overflow-hidden">
-                  <div className="w-12 h-12 rounded-2xl bg-white/15 backdrop-blur-md border border-white/25 flex items-center justify-center text-cyan-200 mb-2 shadow-inner group-hover:rotate-45 transition-transform duration-300">
-                    <Globe2 className="w-6 h-6 text-cyan-300 animate-spin-slow" />
+                <div className="w-full h-full rounded-full bg-gradient-to-br from-cyan-400 via-teal-800 to-space-950 p-4 sm:p-5 shadow-[0_0_85px_rgba(56,189,248,0.55),inset_0_15px_35px_rgba(255,255,255,0.45),inset_0_-18px_45px_rgba(0,0,0,0.9)] border border-cyan-300/40 flex flex-col items-center justify-center text-center relative overflow-hidden">
+                  <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-white/15 backdrop-blur-md border border-white/25 flex items-center justify-center text-cyan-200 mb-1.5 shadow-inner group-hover:rotate-45 transition-transform duration-300">
+                    <Globe2 className="w-5 h-5 sm:w-6 sm:h-6 text-cyan-300 animate-spin-slow" />
                   </div>
-                  <h3 className="text-xl sm:text-2xl font-bold tracking-wide text-white drop-shadow-md">
+                  <h3 className="text-base sm:text-xl font-bold tracking-wide text-white drop-shadow-md">
                     Chrono Sphere
                   </h3>
-                  <span className="text-xs sm:text-sm font-mono text-cyan-200 font-semibold mt-1">
+                  <span className="text-[11px] sm:text-xs font-mono text-cyan-200 font-semibold mt-0.5">
                     Stopwatch & Timer
                   </span>
-                  <span className="text-xs font-mono uppercase tracking-wider text-cyan-300 mt-2.5 px-3.5 py-1 rounded-full bg-cyan-400/20 border border-cyan-400/40 group-hover:bg-cyan-400/35 transition-all shadow-sm font-semibold">
+                  <span className="text-[10px] sm:text-xs font-mono uppercase tracking-wider text-cyan-300 mt-2 px-3 py-0.5 sm:py-1 rounded-full bg-cyan-400/20 border border-cyan-400/40 group-hover:bg-cyan-400/35 transition-all shadow-sm font-semibold">
                     Enter Chrono
                   </span>
                 </div>
 
                 {/* Orbiting Chrono Satellite */}
-                <div className="absolute bottom-4 -left-1 w-5 h-5 rounded-full bg-gradient-to-tr from-cyan-200 to-teal-400 shadow-[0_0_18px_#38bdf8] animate-pulse" />
+                <div className="absolute bottom-3 -left-1 w-3.5 h-3.5 rounded-full bg-gradient-to-tr from-cyan-200 to-teal-400 shadow-[0_0_14px_#38bdf8] animate-pulse" />
               </div>
-              <p className="text-xs sm:text-sm font-mono text-cyan-300/90 mt-3 tracking-widest uppercase font-bold drop-shadow">
+              <p className="text-xs sm:text-sm font-mono text-cyan-300/90 mt-2 tracking-widest uppercase font-bold drop-shadow">
                 Sector 04 • Stopwatch World
               </p>
             </div>
