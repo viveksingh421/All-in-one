@@ -6,6 +6,14 @@ class AmbientAudioEngine {
     this.activeTrack = null; // 'cosmic' | 'rain' | 'drift'
     this.nodes = [];
     this.masterGain = null;
+    this.volume = (() => {
+      try {
+        const saved = localStorage.getItem('aether_sound_volume');
+        return saved !== null ? parseFloat(saved) : 0.45;
+      } catch {
+        return 0.45;
+      }
+    })();
   }
 
   async init() {
@@ -13,11 +21,24 @@ class AmbientAudioEngine {
       const AudioCtx = window.AudioContext || window.webkitAudioContext;
       this.ctx = new AudioCtx();
       this.masterGain = this.ctx.createGain();
-      this.masterGain.gain.setValueAtTime(0.35, this.ctx.currentTime);
+      this.masterGain.gain.setValueAtTime(this.volume, this.ctx.currentTime);
       this.masterGain.connect(this.ctx.destination);
     }
     if (this.ctx.state === 'suspended') {
       await this.ctx.resume();
+    }
+  }
+
+  setVolume(newVol) {
+    const clamped = Math.max(0, Math.min(1, newVol));
+    this.volume = clamped;
+    try {
+      localStorage.setItem('aether_sound_volume', clamped.toString());
+    } catch {
+      // ignore
+    }
+    if (this.masterGain && this.ctx) {
+      this.masterGain.gain.setValueAtTime(clamped, this.ctx.currentTime);
     }
   }
 

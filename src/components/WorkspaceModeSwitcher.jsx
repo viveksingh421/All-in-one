@@ -36,8 +36,8 @@ export const WORKSPACE_MODES = [
 
 export const WorkspaceModeSwitcher = ({ activeMode, onSelectMode }) => {
   return (
-    <div className="fixed bottom-6 right-6 z-50">
-      <div className="glass-panel p-1.5 rounded-2xl border border-white/15 shadow-[0_15px_40px_rgba(0,0,0,0.6)] flex items-center gap-1.5 backdrop-blur-2xl">
+    <div className="fixed bottom-3 sm:bottom-6 right-3 sm:right-6 z-40">
+      <div className="glass-panel p-1 sm:p-1.5 rounded-xl sm:rounded-2xl border border-white/15 shadow-[0_15px_40px_rgba(0,0,0,0.6)] flex items-center gap-1 sm:gap-1.5 backdrop-blur-2xl">
         {WORKSPACE_MODES.map((mode) => {
           const Icon = mode.icon;
           const isActive = activeMode === mode.id;
@@ -45,7 +45,7 @@ export const WorkspaceModeSwitcher = ({ activeMode, onSelectMode }) => {
             <button
               key={mode.id}
               onClick={() => onSelectMode(mode.id)}
-              className={`flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-mono transition-all duration-300 ${
+              className={`flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-lg sm:rounded-xl text-[10px] sm:text-xs font-mono transition-all duration-300 ${
                 isActive
                   ? 'bg-white/15 border border-white/20 text-white shadow-[0_0_15px_rgba(255,255,255,0.15)] font-semibold'
                   : 'text-starlight-300/60 hover:text-white hover:bg-white/5 border border-transparent'
@@ -53,11 +53,11 @@ export const WorkspaceModeSwitcher = ({ activeMode, onSelectMode }) => {
               title={mode.desc}
             >
               <Icon
-                className={`w-3.5 h-3.5 ${
+                className={`w-3 h-3 sm:w-3.5 sm:h-3.5 ${
                   isActive ? 'text-cyan-300 animate-pulse' : 'text-starlight-300/50'
                 }`}
               />
-              <span className="hidden sm:inline">{mode.label}</span>
+              <span className="hidden md:inline">{mode.label}</span>
             </button>
           );
         })}

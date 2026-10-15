@@ -1,18 +1,77 @@
-import React, { useState } from 'react';
-import { Volume2, VolumeX, Radio, Sparkles, CloudRain, Disc3 } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Volume2, VolumeX, Radio, Sparkles, CloudRain, Disc3, Sliders, Check } from 'lucide-react';
 import { soundManager } from '../utils/audio';
 
 export const SoundPlayer = () => {
-  const [activeSound, setActiveSound] = useState(null); // 'cosmic' | 'rain' | 'drift' | null
+  const [activeSound, setActiveSound] = useState(() => {
+    try {
+      const autoPlay = localStorage.getItem('aether_sound_autoplay') === 'true';
+      const lastSound = localStorage.getItem('aether_last_sound');
+      return autoPlay && lastSound ? lastSound : null;
+    } catch {
+      return null;
+    }
+  });
+
+  const [volume, setVolumeState] = useState(() => {
+    try {
+      const saved = localStorage.getItem('aether_sound_volume');
+      return saved !== null ? Math.round(parseFloat(saved) * 100) : 45;
+    } catch {
+      return 45;
+    }
+  });
+
+  const [autoPlay, setAutoPlay] = useState(() => {
+    try {
+      return localStorage.getItem('aether_sound_autoplay') === 'true';
+    } catch {
+      return false;
+    }
+  });
+
   const [isOpen, setIsOpen] = useState(false);
+
+  // Resume auto-played sound on first user gesture if configured
+  useEffect(() => {
+    if (autoPlay && activeSound) {
+      soundManager.playTrack(activeSound);
+    }
+  }, []);
+
+  const handleVolumeChange = (e) => {
+    const val = parseInt(e.target.value, 10);
+    setVolumeState(val);
+    soundManager.setVolume(val / 100);
+  };
+
+  const handleToggleAutoPlay = () => {
+    const nextVal = !autoPlay;
+    setAutoPlay(nextVal);
+    try {
+      localStorage.setItem('aether_sound_autoplay', nextVal.toString());
+    } catch {
+      // ignore
+    }
+  };
 
   const toggleSound = (soundKey) => {
     if (activeSound === soundKey) {
       soundManager.stop();
       setActiveSound(null);
+      try {
+        localStorage.removeItem('aether_last_sound');
+      } catch {
+        // ignore
+      }
     } else {
       soundManager.playTrack(soundKey);
       setActiveSound(soundKey);
+      try {
+        localStorage.setItem('aether_last_sound', soundKey);
+      } catch {
+        // ignore
+      }
     }
   };
 
@@ -20,7 +79,7 @@ export const SoundPlayer = () => {
     {
       id: 'cosmic',
       label: 'Deep Void Drone',
-      desc: 'Warm harmonic 55Hz space resonance',
+      desc: 'Warm harmonic 110Hz space resonance',
       icon: Disc3,
       color: 'from-indigo-500 to-purple-600',
     },
@@ -34,7 +93,7 @@ export const SoundPlayer = () => {
     {
       id: 'rain',
       label: 'Cosmic Stardust Rain',
-      desc: 'Gentle soothing ambient frequencies',
+      desc: 'Gentle soothing ambient frequencies & stardust pings',
       icon: CloudRain,
       color: 'from-teal-400 to-emerald-600',
     },
@@ -74,12 +133,50 @@ export const SoundPlayer = () => {
                 onClick={() => {
                   soundManager.stop();
                   setActiveSound(null);
+                  try {
+                    localStorage.removeItem('aether_last_sound');
+                  } catch {
+                    // ignore
+                  }
                 }}
                 className="text-xs text-rose-300 hover:text-rose-200 uppercase tracking-wider font-mono font-bold px-2 py-1 rounded-lg bg-rose-500/20 border border-rose-500/30 cursor-pointer"
               >
                 Mute All
               </button>
             )}
+          </div>
+
+          {/* Volume percentage slider */}
+          <div className="mb-4 p-3 rounded-2xl bg-space-900/70 border border-white/10 space-y-2">
+            <div className="flex items-center justify-between text-xs font-mono">
+              <span className="text-starlight-200 font-bold flex items-center gap-1.5">
+                <Volume2 className="w-4 h-4 text-cyan-300" /> Master Volume
+              </span>
+              <span className="text-cyan-300 font-bold">{volume}%</span>
+            </div>
+            <input
+              type="range"
+              min="0"
+              max="100"
+              value={volume}
+              onChange={handleVolumeChange}
+              className="w-full accent-cyan-400 cursor-pointer"
+            />
+          </div>
+
+          {/* Auto-Play Toggle */}
+          <div
+            onClick={handleToggleAutoPlay}
+            className="mb-3 px-3 py-2 rounded-xl bg-space-900/60 border border-white/10 flex items-center justify-between cursor-pointer hover:bg-space-850 transition-colors"
+          >
+            <span className="text-xs font-mono text-starlight-200 font-semibold">
+              Auto-resume on launch
+            </span>
+            <div className={`w-5 h-5 rounded-lg border flex items-center justify-center transition-all ${
+              autoPlay ? 'bg-cyan-500 border-cyan-400 text-white' : 'border-white/20'
+            }`}>
+              {autoPlay && <Check className="w-3.5 h-3.5 stroke-[3]" />}
+            </div>
           </div>
 
           <div className="space-y-2.5">

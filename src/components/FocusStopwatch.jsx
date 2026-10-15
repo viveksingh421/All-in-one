@@ -244,8 +244,8 @@ export const FocusStopwatch = () => {
       {/* --- TAB 1: STOPWATCH VIEW --- */}
       {activeTab === 'stopwatch' && (
         <>
-          <div className="relative flex flex-col items-center justify-center my-6 sm:my-8 flex-1">
-            <div className="relative w-80 h-80 sm:w-96 sm:h-96 md:w-[440px] md:h-[440px] flex items-center justify-center">
+          <div className="relative flex flex-col items-center justify-center my-4 sm:my-8 flex-1">
+            <div className="relative w-64 h-64 xs:w-72 xs:h-72 sm:w-96 sm:h-96 md:w-[440px] md:h-[440px] flex items-center justify-center">
               <svg className="w-full h-full -rotate-90 transform drop-shadow-[0_0_35px_rgba(56,189,248,0.35)]" viewBox="0 0 100 100">
                 <circle
                   cx="50"
@@ -282,25 +282,25 @@ export const FocusStopwatch = () => {
                   transform: `rotate(${(currentSecsWithFraction / 60) * 360}deg)`,
                 }}
               >
-                <div className="w-5 h-5 rounded-full bg-cyan-300 shadow-[0_0_22px_#38bdf8] mx-auto -mt-2" />
+                <div className="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-cyan-300 shadow-[0_0_22px_#38bdf8] mx-auto -mt-2" />
               </div>
 
-              <div className="absolute flex flex-col items-center text-center">
-                <span className="text-base sm:text-lg font-mono tracking-widest uppercase text-starlight-300/80 mb-2 font-bold">
+              <div className="absolute flex flex-col items-center text-center px-2">
+                <span className="text-xs sm:text-lg font-mono tracking-widest uppercase text-starlight-300/80 mb-1 sm:mb-2 font-bold">
                   ELAPSED TIME
                 </span>
-                <div className="font-mono text-5xl sm:text-7xl md:text-8xl font-light tracking-tight text-white flex items-baseline drop-shadow-2xl">
+                <div className="font-mono text-3xl xs:text-4xl sm:text-7xl md:text-8xl font-light tracking-tight text-white flex items-baseline drop-shadow-2xl">
                   <span>{hours !== '00' ? `${hours}:` : ''}</span>
                   <span>{mins}:</span>
                   <span className="text-cyan-200 font-semibold">{secs}</span>
-                  <span className="text-xl sm:text-2xl md:text-3xl text-starlight-300/80 ml-1.5 font-normal">.{centis}</span>
+                  <span className="text-base sm:text-2xl md:text-3xl text-starlight-300/80 ml-1 font-normal">.{centis}</span>
                 </div>
-                <span className={`text-sm sm:text-base font-mono mt-4 px-5 py-2 rounded-full border transition-all ${
+                <span className={`text-xs sm:text-base font-mono mt-2 sm:mt-4 px-3 sm:px-5 py-1 sm:py-2 rounded-full border transition-all ${
                   isRunning
                     ? 'bg-cyan-400/20 border-cyan-400/50 text-cyan-200 shadow-[0_0_20px_rgba(56,189,248,0.4)] animate-pulse font-bold'
                     : 'bg-white/5 border-white/10 text-starlight-300/60 font-medium'
                 }`}>
-                  {isRunning ? '● RECORDING IN SPACE' : 'PAUSED'}
+                  {isRunning ? '● RECORDING' : 'PAUSED'}
                 </span>
               </div>
             </div>
@@ -460,8 +460,8 @@ export const FocusStopwatch = () => {
           </form>
 
           {/* Countdown Ring */}
-          <div className="relative flex flex-col items-center justify-center my-6 sm:my-8 flex-1">
-            <div className="relative w-80 h-80 sm:w-96 sm:h-96 md:w-[440px] md:h-[440px] flex items-center justify-center">
+          <div className="relative flex flex-col items-center justify-center my-4 sm:my-8 flex-1">
+            <div className="relative w-64 h-64 xs:w-72 xs:h-72 sm:w-96 sm:h-96 md:w-[440px] md:h-[440px] flex items-center justify-center">
               <svg className="w-full h-full -rotate-90 transform drop-shadow-[0_0_35px_rgba(168,85,247,0.35)]" viewBox="0 0 100 100">
                 <circle
                   cx="50"
@@ -492,17 +492,17 @@ export const FocusStopwatch = () => {
                 </defs>
               </svg>
 
-              <div className="absolute flex flex-col items-center text-center">
-                <span className="text-base sm:text-lg font-mono tracking-widest uppercase text-purple-300/80 mb-2 font-bold flex items-center gap-1.5">
-                  <Hourglass className="w-4 h-4 text-purple-400" />
-                  COUNTDOWN REMAINING
+              <div className="absolute flex flex-col items-center text-center px-2">
+                <span className="text-xs sm:text-lg font-mono tracking-widest uppercase text-purple-300/80 mb-1 sm:mb-2 font-bold flex items-center gap-1.5">
+                  <Hourglass className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-purple-400" />
+                  COUNTDOWN
                 </span>
-                <div className="font-mono text-5xl sm:text-7xl md:text-8xl font-light tracking-tight text-white flex items-baseline drop-shadow-2xl">
+                <div className="font-mono text-3xl xs:text-4xl sm:text-7xl md:text-8xl font-light tracking-tight text-white flex items-baseline drop-shadow-2xl">
                   {timerHours > 0 && <span>{String(timerHours).padStart(2, '0')}:</span>}
                   <span>{String(timerMins).padStart(2, '0')}:</span>
                   <span className="text-purple-300 font-semibold">{String(timerSecs).padStart(2, '0')}</span>
                 </div>
-                <span className={`text-sm sm:text-base font-mono mt-4 px-5 py-2 rounded-full border transition-all ${
+                <span className={`text-xs sm:text-base font-mono mt-2 sm:mt-4 px-3 sm:px-5 py-1 sm:py-2 rounded-full border transition-all ${
                   isTimerRunning
                     ? 'bg-purple-400/20 border-purple-400/50 text-purple-200 shadow-[0_0_20px_rgba(168,85,247,0.4)] animate-pulse font-bold'
                     : timerRemainingSecs === 0
@@ -510,9 +510,9 @@ export const FocusStopwatch = () => {
                     : 'bg-white/5 border-white/10 text-starlight-300/60 font-medium'
                 }`}>
                   {isTimerRunning
-                    ? '● COUNTDOWN RUNNING'
+                    ? '● RUNNING'
                     : timerRemainingSecs === 0
-                    ? 'Orbit Interval Complete!'
+                    ? 'Complete!'
                     : 'PAUSED'}
                 </span>
               </div>
